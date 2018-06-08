@@ -224,7 +224,7 @@ student.getInfo();
 
 console.log('\nTask 03.03');
 // Task 03.03
-// Points: 2
+// Points: 2 
 // In code above, we defined the 'student' object. 
 // Add 'birthday' property to it, set it's value to new Date(1991,8,24);
 student.birthday = new Date(1991, 8, 24);
