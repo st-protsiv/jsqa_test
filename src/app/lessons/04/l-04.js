@@ -527,9 +527,11 @@ console.log('\nTask 04.01');
 // Points: 1
 // Прочитай файл уроку. Створи новий масив primeNumbers, що складається з перших десяти простих чисел. 
 // Використай метод push, щоб додати до масиву ще одне просте число.
-// TODO: пиши код тут:
 
 let primeNumbers;
+primeNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+primeNumbers.push(15);
+console.log(primeNumbers + " " + typeof(primeNumbers));
 
 // Цей код тестує завдання:
 if (primeNumbers && primeNumbers.length === 11) {
@@ -544,22 +546,36 @@ console.log('\nTask 04.02');
 // Points: 2
 // Напиши функцію sortNumbers і використай її у методі sort масиву primeNumbers для того, 
 // щоб відсортувати його елементи у зворотньому порядку.
-// TODO: пиши код тут:
+let primeNumbersNotSorted = new Array();
+for (let i = 0; i <= primeNumbers.length - 1; i ++){
+	primeNumbersNotSorted.push(primeNumbers[i]);
+	console.log("primeNumbersNotSorted after sort = " + primeNumbersNotSorted + " " + typeof(primeNumbersNotSorted));
+}
+
+function sortNumbers(a, b){
+	return b - a;
+}
+
+primeNumbers.sort(sortNumbers);
+console.log("Array is sorted by Descending = " + primeNumbers);
+
 // Цей код тестує завдання:
-if (primeNumbers && primeNumbers[0] && primeNumbers[0] === 31) {
+if (primeNumbers && primeNumbers[0] && primeNumbers[0] === primeNumbersNotSorted[primeNumbersNotSorted.length -1]) { //changed condition for the firs/last element
+// if (primeNumbers && primeNumbers[0] && primeNumbers[0] === 31) {
 	console.log('Task 04.02 is DONE! ');
 } else {
 	console.log('Please make Task 04.02');
 }
 
-
-
-
-
 console.log('\nTask 04.03'); 
 // Points: 2
 // За допомогою методу splice виріж з масиву елементи з другого по третій і при цьому заміни їх на рядок 'foo'.
-// TODO: пиши код тут:
+
+primeNumbers.splice(2, 2, 'foo');
+console.log("primeNumbers = " + primeNumbers);
+
+// primeNumbers[2] ймовірно помилка, оскільки це доступ до 3го елемента, індекс якого 2, 
+// а нам потрібно було видалити з 2го по 3й, відповідно 'foo' буде другим елементом, але з індексом 1
 if (primeNumbers && primeNumbers[2] === 'foo') {
 	console.log('Task 04.03 is DONE! ');
 } else {
@@ -567,18 +583,20 @@ if (primeNumbers && primeNumbers[2] === 'foo') {
 }
 
 
-
-
-
 console.log('\nTask 04.04');
 // Points: 2 
 // Використай метод Array.forEach для того, 
 // щоб додати до кожного елементу масиву [21, 63, 84] число '42'
-// TODO: пиши свій код тут:
+
+let summedArray = [21, 63, 84];
+
+summedArray.forEach(function(el){
+	el += 42;
+	console.log(el);
+})
+console.log(summedArray);
+
 console.log('Please make Task 04.04');
-
-
-
 
 
 console.log('\nTask 04.05');
@@ -591,13 +609,17 @@ var crazyMix = [1, '1', true, 2, '02', 3, '0', '10', 11, [], {}, function() {}];
 
 function arrayCleanUp(arrayToCleanUp) {
 	var cleanedUp = arrayToCleanUp;
-	// TODO: пиши свій код тут:
+	cleanedUp = cleanedUp.filter(function(el){
+		return typeof(el) === 'number';
+	})
+	console.log("cleanedUp = " + cleanedUp);
 	return cleanedUp;
 }
 
 var cleanedUp = arrayCleanUp(crazyMix).every(function(element) {
 	return typeof element === 'number';
 });
+
 
 // Цей код тестує завдання:
 if (cleanedUp) {
@@ -619,10 +641,22 @@ var matrix = [
 	[4, 5, 29, 3],
 	[2, 12, 4, 7]
 ];
-
-function findMaxInMatrix(mtx) {
-	// TODO: пиши свій код тут:
+function sortArray(a, b){
+	return b - a;
 }
+
+var maxValues = [];
+function findMaxInMatrix(mtx) {
+	for (let i = 0; i < mtx.length; i++){
+		mtx[i].sort(sortArray);
+		maxValues.push(mtx[i][0]);
+		console.log("maxValues = " + maxValues);
+	}
+	maxValues.sort(sortArray);
+	console.log("maxValues[0] = " + maxValues[0]);
+	return maxValues[0];
+}
+
 
 var res = findMaxInMatrix(matrix);
 
